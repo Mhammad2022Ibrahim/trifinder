@@ -5,6 +5,9 @@ import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 @Index("related_index", ["relatedType"], {})
 @Index("related_id", ["relatedId"], {})
 @Entity("images", { schema: "trifinder_db" })
+
+
+
 export class Images {
   @PrimaryGeneratedColumn({ type: "int", name: "id" })
   id: number;
