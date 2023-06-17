@@ -8,7 +8,7 @@ import {
 } from "typeorm";
 import { Users } from "./Users";
 
-@Index("idreview_UNIQUE", ["id"], { unique: true })
+// @Index("idreview_UNIQUE", ["id"], { unique: true })
 @Index("relation_id", ["relatedType"], {})
 @Index("related_id", ["relatedId"], {})
 @Index("user_id", ["userId"], {})

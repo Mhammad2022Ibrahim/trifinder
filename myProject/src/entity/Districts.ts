@@ -10,7 +10,7 @@ import {
 import { Cities } from "./Cities";
 import { Countries } from "./Countries";
 
-@Index("id_UNIQUE", ["id"], { unique: true })
+// @Index("id_UNIQUE", ["id"], { unique: true })
 @Index("name_UNIQUE", ["name"], { unique: true })
 @Index("country_id", ["countryId"], {})
 @Entity("districts", { schema: "trifinder_db" })

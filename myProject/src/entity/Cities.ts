@@ -11,7 +11,7 @@ import { Attractions } from "./Attractions";
 import { Districts } from "./Districts";
 import { Users } from "./Users";
 
-@Index("idcity_UNIQUE", ["id"], { unique: true })
+// @Index("idcity_UNIQUE", ["id"], { unique: true })
 @Index("IDX_f8c0858628830a35f19efdc0ec", ["name"], { unique: true })
 @Index("district_id", ["districtId"], {})
 @Entity("cities", { schema: "trifinder_db" })

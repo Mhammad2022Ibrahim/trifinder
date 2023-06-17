@@ -8,7 +8,7 @@ import {
 } from "typeorm";
 import { Cities } from "./Cities";
 
-@Index("idattraction_UNIQUE", ["id"], { unique: true })
+// @Index("idattraction_UNIQUE", ["id"], { unique: true })
 @Index("city_id", ["cityId"], {})
 @Index("attraction_type", ["attractionType"], {})
 @Entity("attractions", { schema: "trifinder_db" })

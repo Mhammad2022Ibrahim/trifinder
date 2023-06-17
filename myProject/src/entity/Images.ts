@@ -1,6 +1,6 @@
 import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 
-@Index("idimage_UNIQUE", ["id"], { unique: true })
+// @Index("idimage_UNIQUE", ["id"], { unique: true })
 @Index("name_UNIQUE", ["name"], { unique: true })
 @Index("related_index", ["relatedType"], {})
 @Index("related_id", ["relatedId"], {})
