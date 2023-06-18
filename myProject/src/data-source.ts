@@ -8,6 +8,7 @@ import { Districts } from "./entity/Districts"
 import { Images } from "./entity/Images"
 import { Reviews } from "./entity/Reviews"
 import { Trips } from "./entity/Trips"
+import { UpdateUsers1687112875261 } from "./migration/1687112875261-updateUsers"
 
 export const AppDataSource = new DataSource({
     type: "mysql",
@@ -19,7 +20,7 @@ export const AppDataSource = new DataSource({
     synchronize: true,
     logging: false,
     entities: [Users,Attractions,Cities,Countries,Districts,Images,Reviews,Trips],
-    migrations: [],
+    migrations: [UpdateUsers1687112875261],
     subscribers: [],
 })
 

@@ -23,10 +23,10 @@ export class Users {
   @Column("varchar", { name: "email", nullable: true, length: 150 })
   email: string | null;
 
-  @Column("int", { name: "age", nullable: true })
+  @Column("int", { name: "age", nullable: true})
   age: number | null;
 
-  @Column("int", { name: "gender", nullable: true })
+  @Column("int", { name: "gender", nullable: true, comment: "1:male,2:female", })
   gender: number | null;
 
   @Column("int", { name: "city_id", nullable: true })
