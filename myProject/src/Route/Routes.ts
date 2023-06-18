@@ -3,7 +3,7 @@ import { createCityRoute } from './CityRoute';
 import { createUserRoute } from './UserRoute';
 import { createImageRoute } from './ImagRoute';
 import { createAttractionRoute } from './AttractionRoute';
-// import { createReviewAttractionRoute } from './ReviewAttractionRoute';
+import { createReviewRoute } from './ReviewRoute';
 import { createTripRoute } from './TripRoute';
 // import { createReviewCityRoute } from './ReviewCityRoute';
 // import { createReviewTripRoute } from './ReviewTripRoute';
@@ -24,7 +24,7 @@ export function initializeRoutes(app: any) {
   app.post('/attractions', createAttractionRoute);
 
   // Route to handle review attraction creation
-  // app.post('/reviews/attraction', createReviewAttractionRoute);
+  app.post('/reviews/attraction', createReviewRoute);
 
   // Route to handle review trip creation
   // app.post('/reviews/trip', createReviewTripRoute);
