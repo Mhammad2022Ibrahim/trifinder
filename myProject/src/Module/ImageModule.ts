@@ -3,6 +3,8 @@ import { Images } from '../entity/Images';
 import { Repository, FindOneOptions } from "typeorm";
 import { Countries } from '../entity/Countries'; // Import the Country entity
 import { Cities } from '../entity/Cities'; // Import the City entity
+import { Attractions } from "../entity/Attractions";
+import { Trips } from "../entity/Trips";
 
 async function getImagesForTable(tableType: number): Promise<Images[]> {
   const imgRepository: Repository<Images> = AppDataSource.getRepository(Images);
@@ -30,6 +32,19 @@ export const createImage = async (imgData: Partial<Images>): Promise<Images> => 
       const city = await cityRepository.findOne({ where: { id: imgData.relatedId } });
       if (!city) {
         throw new Error('Related city does not exist.');
+      }
+    }else if (imgData.relatedType === 3){// Assuming relatedType 3 is for attractions
+      const attRepository : Repository<Attractions> = AppDataSource.getRepository(Attractions);
+      const attraction = await attRepository.findOne({where:{id:imgData.relatedId}});
+      if(!attraction){
+        throw new Error('Attraction not found');
+      }
+    }
+    else if(imgData.relatedType===4){// Assuming relatedType 4 is for trips
+      const tripRepository : Repository<Trips> = AppDataSource.getRepository(Trips);
+      const trip = await tripRepository.findOne({where:{id:imgData.relatedId}});
+      if(!trip){
+        throw new Error('Trip not found');
       }
     }
     
