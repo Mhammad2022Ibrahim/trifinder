@@ -8,7 +8,7 @@ export const createReview = async (revData: {
   user: any;
   average: any;
   relatedType: any;
-  id: any;
+  relatedId: any;
 }) => {
   try {
     const reviewRepository = AppDataSource.getRepository(Reviews);
@@ -31,7 +31,7 @@ export const createReview = async (revData: {
     newReview.userId = revData.user;
     newReview.average = revData.average;
     newReview.relatedType = revData.relatedType;
-    newReview.relatedId = revData.id;
+    newReview.relatedId = revData.relatedId;
 
     const savedReview = await reviewRepository.save(newReview);
 
@@ -39,7 +39,7 @@ export const createReview = async (revData: {
       // Update nbReview and average for the attraction
       const cityRepository = AppDataSource.getRepository(Cities);
       const cityEntity = await cityRepository.findOne({
-        where: { id: revData.id },
+        where: { id: revData.relatedId },
       });
 
       if (cityEntity) {
@@ -57,7 +57,7 @@ export const createReview = async (revData: {
       // Update nbReview and average for the attraction
       const attractionRepository = AppDataSource.getRepository(Attractions);
       const attractionEntity = await attractionRepository.findOne({
-        where: { id: revData.id },
+        where: { id: revData.relatedId },
       });
 
       if (attractionEntity) {
@@ -74,7 +74,7 @@ export const createReview = async (revData: {
       // Update nbReview and average for the attraction
       const tripRepository = AppDataSource.getRepository(Trips);
       const tripEntity = await tripRepository.findOne({
-        where: { id: revData.id },
+        where: { id: revData.relatedId },
       });
 
       if (tripEntity) {
