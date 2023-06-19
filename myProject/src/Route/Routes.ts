@@ -24,7 +24,7 @@ export function initializeRoutes(app: any) {
   app.post('/attractions', createAttractionRoute);
 
   // Route to handle review  creation
-  app.post('/reviews/', createReviewRoute);
+  app.post('/reviews', createReviewRoute);
 
   // Route to handle review trip creation
   // app.post('/reviews/trip', createReviewTripRoute);
