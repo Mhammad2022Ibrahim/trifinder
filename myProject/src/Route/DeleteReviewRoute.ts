@@ -7,7 +7,7 @@ export const deleteReviewRoute = async (req: Request, res: Response) => {
     const revData = { user, relatedType, relatedId , nbReview: null };
     const rev = await deleteReview(revData);
 
-    res.status(201).json({ message: 'Review created successfully', rev });
+    res.status(201).json({ message: 'Review delete successfully', rev });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error', error: error.message });
