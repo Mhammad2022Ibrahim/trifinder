@@ -40,16 +40,15 @@ export const updateReview = async (revData: {
       });
 
       if (cityEntity) {
-        // Calculate the updated average and number of reviews
+        // Calculate the updated average
         const currentNbReview = cityEntity.nbReview || 0;
         const currentAverage = cityEntity.averageReview || 0;
 
         const updatedAverage =
           (currentAverage * currentNbReview - oldAverage + revData.average) /
-          (currentNbReview || 1); // Adding fallback to avoid division by zero
+          currentNbReview; // Calculate average based on the existing number of reviews
 
         cityEntity.averageReview = updatedAverage;
-        cityEntity.nbReview = currentNbReview + 1; // Increment the number of reviews
 
         await cityRepository.save(cityEntity);
       }
@@ -58,19 +57,17 @@ export const updateReview = async (revData: {
       const attractionEntity = await attractionRepository.findOne({
         where: { id: revData.relatedId },
       });
-    
+
       if (attractionEntity) {
         const currentNbReview = attractionEntity.nbReview || 0;
         const currentTotalRating = attractionEntity.average * currentNbReview || 0;
         const newTotalRating = currentTotalRating - oldAverage + revData.average;
-        const updatedAverage = newTotalRating / (currentNbReview + 1);
-    
+        const updatedAverage = newTotalRating / currentNbReview; // Calculate average based on the existing number of reviews
+
         attractionEntity.average = updatedAverage;
-        // attractionEntity.nbReview = currentNbReview + 1; // Increment the number of reviews
-    
+
         await attractionRepository.save(attractionEntity);
       }
-    
     } else if (revData.relatedType === 3) {
       const tripRepository = AppDataSource.getRepository(Trips);
       const tripEntity = await tripRepository.findOne({
@@ -83,14 +80,19 @@ export const updateReview = async (revData: {
 
         const updatedAverage =
           (currentAverage * currentNbReview - oldAverage + revData.average) /
-          (currentNbReview || 1); // Adding fallback to avoid division by zero
+          currentNbReview; // Calculate average based on the existing number of reviews
 
         tripEntity.average = updatedAverage;
-        tripEntity.nbReview = currentNbReview + 1; // Increment the number of reviews
 
         await tripRepository.save(tripEntity);
       }
     }
+
+    // Update the average in Reviews table
+    const updatedReviews = await reviewRepository.update(
+      { relatedType: revData.relatedType, relatedId: revData.relatedId },
+      { average: revData.average }
+    );
 
     return updatedReview;
   } catch (error) {
