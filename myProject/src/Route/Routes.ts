@@ -5,7 +5,7 @@ import { createImageRoute } from './ImagRoute';
 import { createAttractionRoute } from './AttractionRoute';
 import { createReviewRoute } from './ReviewRoute';
 import { createTripRoute } from './TripRoute';
-// import { createReviewCityRoute } from './ReviewCityRoute';
+import { updateReviewRoute } from './UpdateReviewroute';
 // import { createReviewTripRoute } from './ReviewTripRoute';
 import { createCountryRoute } from './CountriesRoute';
 import { createDistrictRoute } from './DistrictsRoute';
@@ -30,8 +30,8 @@ export function initializeRoutes(app: any) {
   // Route to handle delete review 
   app.post('/delete/reviews', deleteReviewRoute);
 
-  // Route to handle review city creation
-  // app.post('/reviews/city', createReviewCityRoute);
+  // Route to handle update review 
+  app.post('/update/reviews', updateReviewRoute);
 
   // Route to handle trip creation
   app.post('/trip', createTripRoute);
