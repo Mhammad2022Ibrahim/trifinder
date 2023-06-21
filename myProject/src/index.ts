@@ -1,17 +1,17 @@
-// import { AppDataSource } from "./data-source"
-
-// AppDataSource.initialize().then(async () => {
-
-//     console.log("Inserting a new user into the database...")
-
-// }).catch(error => console.log(error))
-
 const express = require('express');
 import { AppDataSource } from "./data-source";
 import { initializeRoutes } from './Route/Routes';
+import cors from 'cors';
+
 
 const app = express();
 app.use(express.json());
+
+// Allow all origins (you can restrict it to your frontend domain in production)
+const cors = require('cors');
+app.use(cors({
+    origin: '*'
+}));
 
 AppDataSource.initialize().then(async () => {
 
