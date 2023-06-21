@@ -41,3 +41,16 @@ export const createCity = async (cityData: Partial<Cities>) => {
     throw new Error('Failed to create City');
   }
 };
+
+
+export const getCitiesByName = async (name: string) => {
+  try {
+    const cityRepository = AppDataSource.getRepository(Cities);
+    const cities = await cityRepository.find({ where: { name } });
+    return cities;
+  } catch (error) {
+    console.log('Failed to fetch cities by name:', error);
+    throw new Error('Failed to fetch cities by name');
+  }
+};
+

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createCityRoute } from './CityRoute';
+import { createCityRoute, getCitiesByNameRoute } from './CityRoute';
 import { createUserRoute } from './UserRoute';
 import { createImageRoute } from './ImagRoute';
 import { createAttractionRoute } from './AttractionRoute';
@@ -14,6 +14,9 @@ import { deleteReviewRoute } from './DeleteReviewRoute';
 export function initializeRoutes(app: any) {
   // Route to handle city creation
   app.post('/cities', createCityRoute);
+
+  // Get cities by name
+  app.get('/getcities', getCitiesByNameRoute);
 
   // Route to handle user creation
   app.post('/users', createUserRoute);
