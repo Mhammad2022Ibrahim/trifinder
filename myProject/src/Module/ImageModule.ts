@@ -1,20 +1,20 @@
+// ImageModule.ts
 import { AppDataSource } from "../data-source";
 import { Images } from '../entity/Images';
-import { Repository, FindOneOptions } from "typeorm";
+import { Repository } from "typeorm";
 import { Countries } from '../entity/Countries'; // Import the Country entity
 import { Cities } from '../entity/Cities'; // Import the City entity
 import { Attractions } from "../entity/Attractions";
 import { Trips } from "../entity/Trips";
 
-async function getImagesForTable(tableType: number): Promise<Images[]> {
+export async function getImagesForTable(tableType: number): Promise<Images[]> {
   const imgRepository: Repository<Images> = AppDataSource.getRepository(Images);
 
-  const images = await imgRepository.createQueryBuilder("images")
-    .where("images.relatedType = :tableType", { tableType })
-    .getMany();
+  const images = await imgRepository.find({ where: { relatedType: tableType } });
 
   return images;
 }
+
 
 export const createImage = async (imgData: Partial<Images>): Promise<Images> => {
   try {
@@ -64,4 +64,6 @@ export const createImage = async (imgData: Partial<Images>): Promise<Images> => 
     throw new Error('Failed to create image');
   }
 };
+
+
 

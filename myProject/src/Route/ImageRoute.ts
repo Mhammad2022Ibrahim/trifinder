@@ -1,5 +1,6 @@
+// ImageRoute.ts
 import { Request, Response } from 'express';
-import { createImage } from '../Module/ImageModule';
+import { createImage, getImagesForTable } from '../Module/ImageModule';
 
 export const createImageRoute = async (req: Request, res: Response) => {
   try {
@@ -20,3 +21,15 @@ export const createImageRoute = async (req: Request, res: Response) => {
     res.status(500).json({ error: 'Failed to create image' });
   }
 };
+
+export async function getImagesForTableRoute(req: Request, res: Response) {
+  try {
+    const tableType = Number(req.query.tableType);
+    const images = await getImagesForTable(tableType);
+
+    res.json({ images });
+  } catch (error) {
+    console.log('Failed to fetch images:', error);
+    res.status(500).json({ error: 'Failed to fetch images' });
+  }
+}
