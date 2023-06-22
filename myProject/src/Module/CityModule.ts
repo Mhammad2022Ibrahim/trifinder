@@ -55,16 +55,17 @@ export const getCitiesByName = async (name: string) => {
   }
 };
 
-export const getCitiesByCountryAndDistrict = async (country: number, district: number) => {
+export const getCitiesByCountryAndDistrict = async (district: number) => {
   try {
-    const district=await getDistrictsByCountry(country)
     const cityRepository = AppDataSource.getRepository(Cities);
-    const cities = await cityRepository.find({where : {district : district} });
+    const cities = await cityRepository.find({ where: { districtId: district } });
     return cities;
   } catch (error) {
     console.log('Failed to fetch cities:', error);
     throw new Error('Failed to fetch cities');
   }
 };
+
+
 
 

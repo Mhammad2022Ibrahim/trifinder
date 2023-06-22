@@ -42,10 +42,10 @@ export const getCitiesByNameRoute = async (req: Request, res: Response) => {
   
 export const getAllCities = async (req: Request, res: Response) => {
   try {
-    const { country, district } = req.body; // Assuming the country and district are sent in the request body
+    const {district } = req.body; // Assuming the country and district are sent in the request body
 
     // Replace the following line with your logic to fetch cities based on the country and district from the database
-    const cities = await getCitiesByCountryAndDistrict(country, district);
+    const cities = await getCitiesByCountryAndDistrict(district);
 
     res.status(200).json({ cities });
   } catch (error) {
