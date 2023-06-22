@@ -48,11 +48,7 @@ export function initializeRoutes(app: any) {
   app.post('/countries', createCountryRoute);
 
   // Route to handle district creation
-<<<<<<< Updated upstream
-  app.post('/districts', createDistrictRoute);
-=======
   app.post('/discrits', createDistrictRoute);
   // Get cities by name
   app.get('/alldistricts', getAlldistricts);
->>>>>>> Stashed changes
 }
