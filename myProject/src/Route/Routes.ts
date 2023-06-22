@@ -1,14 +1,13 @@
 import { Request, Response } from 'express';
-import { createCityRoute, getCitiesByNameRoute } from './CityRoute';
+import { createCityRoute, getCitiesByNameRoute, getAllCities } from './CityRoute';
 import { createUserRoute } from './UserRoute';
 import { createImageRoute, getImagesForTableRoute } from './ImageRoute';
 import { createAttractionRoute } from './AttractionRoute';
 import { createReviewRoute } from './ReviewRoute';
 import { createTripRoute } from './TripRoute';
 import { updateReviewRoute } from './UpdateReviewroute';
-// import { createReviewTripRoute } from './ReviewTripRoute';
 import { createCountryRoute } from './CountriesRoute';
-import { createDistrictRoute } from './DistrictsRoute';
+import { createDistrictRoute, getAlldistricts } from './DistrictsRoute';
 import { deleteReviewRoute } from './DeleteReviewRoute';
 
 export function initializeRoutes(app: any) {
@@ -17,6 +16,9 @@ export function initializeRoutes(app: any) {
 
   // Get cities by name
   app.get('/getcities', getCitiesByNameRoute);
+
+  // Get cities by name
+  app.get('/allcities', getAllCities);
 
   // Route to handle user creation
   app.post('/users', createUserRoute);
@@ -46,5 +48,11 @@ export function initializeRoutes(app: any) {
   app.post('/countries', createCountryRoute);
 
   // Route to handle district creation
+<<<<<<< Updated upstream
   app.post('/districts', createDistrictRoute);
+=======
+  app.post('/discrits', createDistrictRoute);
+  // Get cities by name
+  app.get('/alldistricts', getAlldistricts);
+>>>>>>> Stashed changes
 }

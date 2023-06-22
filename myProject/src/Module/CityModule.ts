@@ -1,3 +1,4 @@
+import { getDistrictsByCountry } from '../Module/DistrictsModule';
 import { AppDataSource } from '../data-source';
 import { Cities } from '../entity/Cities';
 import { Districts } from '../entity/Districts';
@@ -53,4 +54,17 @@ export const getCitiesByName = async (name: string) => {
     throw new Error('Failed to fetch cities by name');
   }
 };
+
+export const getCitiesByCountryAndDistrict = async (country: number, district: number) => {
+  try {
+    const district=await getDistrictsByCountry(country)
+    const cityRepository = AppDataSource.getRepository(Cities);
+    const cities = await cityRepository.find({where : {district : district} });
+    return cities;
+  } catch (error) {
+    console.log('Failed to fetch cities:', error);
+    throw new Error('Failed to fetch cities');
+  }
+};
+
 

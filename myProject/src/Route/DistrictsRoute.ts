@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createDistrict } from '../Module/DistrictsModule';
+import { createDistrict, getDistrictsByCountry } from '../Module/DistrictsModule';
 
 export const createDistrictRoute = async (req: Request, res: Response) => {
   try {
@@ -16,5 +16,19 @@ export const createDistrictRoute = async (req: Request, res: Response) => {
   } catch (error) {
     console.log('Failed to create District:', error);
     res.status(500).json({ error: 'Failed to create District' });
+  }
+};
+
+
+export const getAlldistricts = async (req: Request, res: Response) => {
+  try {
+    const { country } = req.body; 
+
+    const districts = await getDistrictsByCountry(country);
+
+    res.status(200).json({ districts });
+  } catch (error) {
+    console.log('Failed to fetch districts:', error);
+    res.status(500).json({ error: 'Failed to fetch districts' });
   }
 };

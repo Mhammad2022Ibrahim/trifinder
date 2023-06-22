@@ -37,3 +37,15 @@ export const createDistrict = async (districtData: Partial<Districts>) => {
     throw new Error('Failed to create District');
   }
 };
+
+
+export const getDistrictsByCountry = async (country: number) => {
+  try {
+    const districtsRepository = AppDataSource.getRepository(Districts);
+    const districts = await districtsRepository.find({ where: { countryId: country } });
+    return districts;
+  } catch (error) {
+    console.log('Failed to fetch districts:', error);
+    throw new Error('Failed to fetch districts');
+  }
+};
