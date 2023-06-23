@@ -7,13 +7,24 @@ import { Cities } from '../entity/Cities'; // Import the City entity
 import { Attractions } from "../entity/Attractions";
 import { Trips } from "../entity/Trips";
 
-export async function getImagesForTable(tableType: number): Promise<Images[]> {
-  const imgRepository: Repository<Images> = AppDataSource.getRepository(Images);
+export async function getImage(relatedId: number, relatedType: number): Promise<Images[]> {
+  try {
+    const imgRepository: Repository<Images> = AppDataSource.getRepository(Images);
 
-  const images = await imgRepository.find({ where: { relatedType: tableType } });
+    const images = await imgRepository.find({ where: { relatedId, relatedType } });
 
-  return images;
+    if (images.length === 0) {
+      throw new Error('No images found');
+    }
+
+    return images;
+  } catch (error) {
+    console.error('An error occurred while fetching images:', error);
+    throw error;
+  }
 }
+
+
 
 
 export const createImage = async (imgData: Partial<Images>): Promise<Images> => {

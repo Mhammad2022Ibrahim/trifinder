@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { createCityRoute, getCitiesByNameRoute, getAllCities } from './CityRoute';
 import { createUserRoute } from './UserRoute';
-import { createImageRoute, getImagesForTableRoute } from './ImageRoute';
+import { createImageRoute, getImages } from './ImageRoute';
 import { createAttractionRoute } from './AttractionRoute';
 import { createReviewRoute } from './ReviewRoute';
 import { createTripRoute } from './TripRoute';
@@ -27,7 +27,7 @@ export function initializeRoutes(app: any) {
   app.post('/images', createImageRoute);
 
   // Route to handle image creation
-   app.get('/getimages', getImagesForTableRoute);
+   app.get('/getimages', getImages);
 
   // Route to handle attraction creation
   app.post('/attractions', createAttractionRoute);
