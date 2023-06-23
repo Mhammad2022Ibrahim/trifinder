@@ -21,14 +21,13 @@ export const createImageRoute = async (req: Request, res: Response) => {
     res.status(500).json({ error: 'Failed to create image' });
   }
 };
-
 export async function getImages(req: Request, res: Response) {
   try {
-    const { relatedId, relatedType } = req.body;
+    const { country } = req.query;
 
-    const fetchedImages = await getImage(relatedId, relatedType);
+    const fetchedImages = await getImage(country);
 
-    res.status(201).json({ images: fetchedImages });
+    res.status(200).json({ images: fetchedImages });
   } catch (error) {
     console.log('Failed to fetch images:', error);
     res.status(500).json({ error: 'Failed to fetch images' });

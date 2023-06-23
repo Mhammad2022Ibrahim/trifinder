@@ -7,11 +7,11 @@ import { Cities } from '../entity/Cities'; // Import the City entity
 import { Attractions } from "../entity/Attractions";
 import { Trips } from "../entity/Trips";
 
-export async function getImage(relatedId: number, relatedType: number): Promise<Images[]> {
+export async function getImage(country: number): Promise<Images[]> {
   try {
     const imgRepository: Repository<Images> = AppDataSource.getRepository(Images);
 
-    const images = await imgRepository.find({ where: { relatedId, relatedType } });
+    const images = await imgRepository.find({ where: { relatedType:country } });
 
     if (images.length === 0) {
       throw new Error('No images found');
