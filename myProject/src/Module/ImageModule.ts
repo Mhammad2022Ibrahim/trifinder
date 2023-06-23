@@ -6,17 +6,23 @@ import { Countries } from '../entity/Countries'; // Import the Country entity
 import { Cities } from '../entity/Cities'; // Import the City entity
 import { Attractions } from "../entity/Attractions";
 import { Trips } from "../entity/Trips";
+import { Districts } from "../entity/Districts";
 
-export async function getImage(country: number): Promise<Images[]> {
+export async function getImage(country: String): Promise<Images[]> {
   try {
     const imgRepository: Repository<Images> = AppDataSource.getRepository(Images);
+    const countRepository: Repository<Countries> = AppDataSource.getRepository(Countries);
+    const countr= await countRepository.find({where: { name : country.toString()}})
+    const images = await imgRepository.find({ where: { relatedType: 1 } });
+    // const dist = await distRepository.find({ where: { name: country.toString() }});
+    // const firstDistrict = dist[0]; // Access the first Districts object in the array
+    // const images = await imgRepository.find({ where: { relatedType: firstDistrict.id } });
 
-    const images = await imgRepository.find({ where: { relatedType:country } });
 
     if (images.length === 0) {
       throw new Error('No images found');
     }
-
+    
     return images;
   } catch (error) {
     console.error('An error occurred while fetching images:', error);
