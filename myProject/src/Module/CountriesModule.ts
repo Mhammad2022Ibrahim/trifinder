@@ -26,3 +26,25 @@ export const createCountry = async (countryData: Partial<Countries>) => {
     throw new Error('Failed to create Country');
   }
 };
+
+
+export const getCountryByName = async (name: string) => {
+  try {
+    const countryRepository = AppDataSource.getRepository(Countries);
+    const country = await countryRepository.findOne({ where: { name } });
+
+    if (!country) {
+      console.log(`Country ${name} not found`);
+      throw new Error(`Country ${name} not found`);
+    }
+
+    return country;
+  } catch (error) {
+    console.log('Failed to fetch country by name:', error);
+    throw new Error('Failed to fetch country by name');
+  }
+};
+
+
+
+

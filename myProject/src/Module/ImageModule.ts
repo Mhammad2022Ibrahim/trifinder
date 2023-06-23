@@ -6,18 +6,29 @@ import { Countries } from '../entity/Countries'; // Import the Country entity
 import { Cities } from '../entity/Cities'; // Import the City entity
 import { Attractions } from "../entity/Attractions";
 import { Trips } from "../entity/Trips";
-import { Districts } from "../entity/Districts";
 
-export async function getImage(country: String): Promise<Images[]> {
+// export const getCountriesByName = async (name: string) => {
+//   try {
+//     const countryRepository = AppDataSource.getRepository(Countries);
+//     const countries = await countryRepository.find({ where: { name } });
+//     return countries;
+//   } catch (error) {
+//     console.log('Failed to fetch countries by name:', error);
+//     throw new Error('Failed to fetch countries by name');
+//   }
+// };
+
+export async function getImage(country: string): Promise<Images[]> {
   try {
     const imgRepository: Repository<Images> = AppDataSource.getRepository(Images);
     const countRepository: Repository<Countries> = AppDataSource.getRepository(Countries);
-    const countr= await countRepository.find({where: { name : country.toString()}})
-    const images = await imgRepository.find({ where: { relatedType: 1 } });
-    // const dist = await distRepository.find({ where: { name: country.toString() }});
-    // const firstDistrict = dist[0]; // Access the first Districts object in the array
-    // const images = await imgRepository.find({ where: { relatedType: firstDistrict.id } });
+    const countryEntity = await countRepository.findOne({ where: { name: country } });
 
+    if (!countryEntity) {
+      throw new Error(`Country ${country} not found`);
+    }
+
+    const images = await imgRepository.find({ where: { relatedType: 1, relatedId: countryEntity.id } });
 
     if (images.length === 0) {
       throw new Error('No images found');
@@ -29,8 +40,6 @@ export async function getImage(country: String): Promise<Images[]> {
     throw error;
   }
 }
-
-
 
 
 export const createImage = async (imgData: Partial<Images>): Promise<Images> => {

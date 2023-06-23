@@ -1,4 +1,3 @@
-import { getDistrictsByCountry } from '../Module/DistrictsModule';
 import { AppDataSource } from '../data-source';
 import { Cities } from '../entity/Cities';
 import { Districts } from '../entity/Districts';

@@ -6,7 +6,7 @@ import { createAttractionRoute } from './AttractionRoute';
 import { createReviewRoute } from './ReviewRoute';
 import { createTripRoute } from './TripRoute';
 import { updateReviewRoute } from './UpdateReviewroute';
-import { createCountryRoute } from './CountriesRoute';
+import { createCountryRoute, getCountryByNameRoute } from './CountriesRoute';
 import { createDistrictRoute, getAlldistricts } from './DistrictsRoute';
 import { deleteReviewRoute } from './DeleteReviewRoute';
 
@@ -26,8 +26,12 @@ export function initializeRoutes(app: any) {
   // Route to handle image creation
   app.post('/images', createImageRoute);
 
-  // Route to handle image creation
+  // Route to handle get image 
    app.get('/getimages', getImages);
+
+   // Route to handle get country 
+   app.get('/getcountry', getCountryByNameRoute);
+
 
   // Route to handle attraction creation
   app.post('/attractions', createAttractionRoute);
