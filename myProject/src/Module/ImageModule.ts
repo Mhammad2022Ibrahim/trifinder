@@ -7,17 +7,6 @@ import { Cities } from '../entity/Cities'; // Import the City entity
 import { Attractions } from "../entity/Attractions";
 import { Trips } from "../entity/Trips";
 
-// export const getCountriesByName = async (name: string) => {
-//   try {
-//     const countryRepository = AppDataSource.getRepository(Countries);
-//     const countries = await countryRepository.find({ where: { name } });
-//     return countries;
-//   } catch (error) {
-//     console.log('Failed to fetch countries by name:', error);
-//     throw new Error('Failed to fetch countries by name');
-//   }
-// };
-
 export async function getImage(country: string): Promise<Images[]> {
   try {
     const imgRepository: Repository<Images> = AppDataSource.getRepository(Images);

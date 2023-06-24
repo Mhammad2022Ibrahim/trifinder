@@ -34,20 +34,3 @@ export async function getImages(req: Request, res: Response) {
   }
 };
 
-// export const getCountryByNameRoute = async (req: Request, res: Response) => {
-//   try {
-//     const { name } = req.query;
-
-//     if (!name) {
-//       res.status(400).json({ error: 'Name parameter is missing' });
-//       return;
-//     }
-
-//     const countries = await getCountriesByName(name as string);
-
-//     res.status(200).json({ countries });
-//   } catch (error) {
-//     console.log('Failed to fetch country by name:', error);
-//     res.status(500).json({ error: 'Failed to fetch country by name' });
-//   }
-// };
