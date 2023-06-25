@@ -49,7 +49,7 @@ export const getAllCities = async (req: Request, res: Response) => {
     const citiesPerPage = Number(pageSize) || 30;
 
     if (!districtId) {
-      res.status(400).json({ error: 'District parameter is missing' });
+      res.status(400).json({ error: 'District parameter is missing !' });
       return;
     }
 
