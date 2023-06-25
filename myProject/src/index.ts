@@ -1,6 +1,6 @@
 const express = require('express');
 import { AppDataSource } from "./data-source";
-import { initializeRoutes } from './Route/Routes';
+import { initializeRoutes } from './Route/routes';
 import cors from 'cors';
 
 

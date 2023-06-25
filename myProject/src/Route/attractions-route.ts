@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createAttraction } from '../Module/AttractionModule';
+import { createAttraction } from '../Module/attractions-module';
 
 export const createAttractionRoute = async (req: Request, res: Response) => {
   try {

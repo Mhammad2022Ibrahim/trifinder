@@ -1,6 +1,6 @@
 // ImageRoute.ts
 import { Request, Response } from 'express';
-import { createImage, getImage } from '../Module/ImageModule';
+import { createImage, getImage } from '../Module/images-module';
 
 export const createImageRoute = async (req: Request, res: Response) => {
   try {

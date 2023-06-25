@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createUser } from '../Module/UserModule';
+import { createUser } from '../Module/users-module';
 
 export const createUserRoute = async (req: Request, res: Response) => {
   try {

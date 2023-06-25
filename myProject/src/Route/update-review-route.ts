@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { updateReview } from '../Module/UpdateReviewModule';
+import { updateReview } from '../Module/update-review-module';
 
 export const updateReviewRoute = async (req: Request, res: Response) => {
   try {

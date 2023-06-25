@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createCountry, getCountryByName } from '../Module/CountriesModule';
+import { createCountry, getCountryByName } from '../Module/countries-module';
 
 export const createCountryRoute = async (req: Request, res: Response) => {
   try {

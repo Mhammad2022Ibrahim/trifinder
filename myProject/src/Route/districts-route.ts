@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createDistrict, getDistrictsByCountry } from '../Module/DistrictsModule';
+import { createDistrict, getDistrictsByCountry } from '../Module/districts-module';
 
 export const createDistrictRoute = async (req: Request, res: Response) => {
   try {

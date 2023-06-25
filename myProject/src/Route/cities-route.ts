@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createCity, getCitiesByName , getCitiesByCountryAndDistrict} from '../Module/CityModule';
+import { createCity, getCitiesByName , getCitiesByCountryAndDistrict} from '../Module/cities-module';
 
 export const createCityRoute = async (req: Request, res: Response) => {
   try {
@@ -40,12 +40,37 @@ export const getCitiesByNameRoute = async (req: Request, res: Response) => {
 };
 
   
+// export const getAllCities = async (req: Request, res: Response) => {
+//   try {
+//     const {district } = req.body; // Assuming the country and district are sent in the request body
+
+//     // Replace the following line with your logic to fetch cities based on the country and district from the database
+//     const cities = await getCitiesByCountryAndDistrict(district);
+
+//     res.status(200).json({ cities });
+//   } catch (error) {
+//     console.log('Failed to fetch cities:', error);
+//     res.status(500).json({ error: 'Failed to fetch cities' });
+//   }
+// };
+
+
+
+
 export const getAllCities = async (req: Request, res: Response) => {
   try {
-    const {district } = req.body; // Assuming the country and district are sent in the request body
+    const { district, page, pageSize } = req.query;
 
-    // Replace the following line with your logic to fetch cities based on the country and district from the database
-    const cities = await getCitiesByCountryAndDistrict(district);
+    const districtId = Number(district);
+    const pageNumber = Number(page) || 1;
+    const citiesPerPage = Number(pageSize) || 30;
+
+    if (!districtId) {
+      res.status(400).json({ error: 'District parameter is missing' });
+      return;
+    }
+
+    const cities = await getCitiesByCountryAndDistrict(districtId, pageNumber, citiesPerPage);
 
     res.status(200).json({ cities });
   } catch (error) {
@@ -54,8 +79,8 @@ export const getAllCities = async (req: Request, res: Response) => {
   }
 };
 
-
-
-
+// GET /allcities?district=1&page=1&pageSize=30
+// GET /allcities?district=1&page=2&pageSize=30
+// GET /allcities?district=1&page=3&pageSize=30
 
 

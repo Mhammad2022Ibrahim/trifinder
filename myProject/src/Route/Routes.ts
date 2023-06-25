@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
-import { createCityRoute, getCitiesByNameRoute, getAllCities } from './CityRoute';
-import { createUserRoute } from './UserRoute';
-import { createImageRoute, getImages } from './ImageRoute';
-import { createAttractionRoute } from './AttractionRoute';
-import { createReviewRoute } from './ReviewRoute';
-import { createTripRoute } from './TripRoute';
-import { updateReviewRoute } from './UpdateReviewroute';
-import { createCountryRoute, getCountryByNameRoute } from './CountriesRoute';
-import { createDistrictRoute, getAlldistricts } from './DistrictsRoute';
-import { deleteReviewRoute } from './DeleteReviewRoute';
+import { createCityRoute, getCitiesByNameRoute, getAllCities } from './cities-route';
+import { createUserRoute } from './users-route';
+import { createImageRoute, getImages } from './images-route';
+import { createAttractionRoute } from './attractions-route';
+import { createReviewRoute } from './reviewes-route';
+import { createTripRoute } from './trips-route';
+import { updateReviewRoute } from './update-review-route';
+import { createCountryRoute, getCountryByNameRoute } from './countries-route';
+import { createDistrictRoute, getAlldistricts } from './districts-route';
+import { deleteReviewRoute } from './delete-review-route';
 
 export function initializeRoutes(app: any) {
   // Route to handle city creation

@@ -29,8 +29,6 @@ export const createAttraction = async (attractionData: Partial<Attractions>) => 
     }
 
     attraction.cityId = attractionData.cityId;
-    attraction.average = attractionData.average || 0;
-    attraction.nbReview = attractionData.nbReview || 0;
 
     // Save the attraction to the database
     const createdAttraction = await attractionRepository.save(attraction);

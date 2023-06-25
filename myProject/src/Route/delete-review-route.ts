@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { deleteReview } from '../Module/DeleteReviewModule';
+import { deleteReview } from '../Module/delete-review-module';
 
 export const deleteReviewRoute = async (req: Request, res: Response) => {
   try {

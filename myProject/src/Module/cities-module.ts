@@ -27,10 +27,8 @@ export const createCity = async (cityData: Partial<Cities>) => {
     const city = new Cities();
     city.name = cityData.name;
     city.districtId = cityData.districtId;
-    city.averageReview = cityData.averageReview || 0;
-    city.nbReview = cityData.nbReview || 0;
-    city.longitude = cityData.longitude || 0;
-    city.latitude = cityData.latitude || 0;
+    city.longitude = cityData.longitude;
+    city.latitude = cityData.latitude;
 
     // Save the city to the database
     const createdCity = await cityRepository.save(city);
@@ -54,10 +52,29 @@ export const getCitiesByName = async (name: string) => {
   }
 };
 
-export const getCitiesByCountryAndDistrict = async (district: number) => {
+// export const getCitiesByCountryAndDistrict = async (district: number) => {
+//   try {
+//     const cityRepository = AppDataSource.getRepository(Cities);
+//     const cities = await cityRepository.find({ where: { districtId: district },skip: 0,take:30 });
+//     return cities;
+//   } catch (error) {
+//     console.log('Failed to fetch cities:', error);
+//     throw new Error('Failed to fetch cities');
+//   }
+// };
+
+
+export const getCitiesByCountryAndDistrict = async (district: number, page: number = 1, pageSize: number = 30) => {
   try {
     const cityRepository = AppDataSource.getRepository(Cities);
-    const cities = await cityRepository.find({ where: { districtId: district } });
+    const skip = (page - 1) * pageSize;
+
+    const cities = await cityRepository.find({
+      where: { districtId: district },
+      skip,
+      take: pageSize,
+    });
+
     return cities;
   } catch (error) {
     console.log('Failed to fetch cities:', error);

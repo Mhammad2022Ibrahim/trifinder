@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createTrip } from '../Module/TripModule';
+import { createTrip } from '../Module/trips-module';
 
 export const createTripRoute = async (req: Request, res: Response) => {
   try {

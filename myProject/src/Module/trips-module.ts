@@ -39,8 +39,6 @@ export const createTrip = async (tripData) => {
     newTrip.cityId = tripData.cityId;
     newTrip.userId = tripData.userId;
     newTrip.description = tripData.description;
-    newTrip.average = tripData.average || 0;
-    newTrip.nbReview = tripData.nbReview || 0;
 
     // Save the trip to the database
     await tripRepository.save(newTrip);
