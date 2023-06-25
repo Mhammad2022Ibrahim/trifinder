@@ -39,23 +39,6 @@ export const getCitiesByNameRoute = async (req: Request, res: Response) => {
   }
 };
 
-  
-// export const getAllCities = async (req: Request, res: Response) => {
-//   try {
-//     const {district } = req.body; // Assuming the country and district are sent in the request body
-
-//     // Replace the following line with your logic to fetch cities based on the country and district from the database
-//     const cities = await getCitiesByCountryAndDistrict(district);
-
-//     res.status(200).json({ cities });
-//   } catch (error) {
-//     console.log('Failed to fetch cities:', error);
-//     res.status(500).json({ error: 'Failed to fetch cities' });
-//   }
-// };
-
-
-
 
 export const getAllCities = async (req: Request, res: Response) => {
   try {

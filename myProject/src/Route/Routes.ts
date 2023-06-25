@@ -15,7 +15,7 @@ export function initializeRoutes(app: any) {
   app.post('/cities', createCityRoute);
 
   // Get cities by name
-  app.get('/getcities', getCitiesByNameRoute);
+  app.get('/getcityName', getCitiesByNameRoute);
 
   // Get cities by name
   app.get('/allcities', getAllCities);
